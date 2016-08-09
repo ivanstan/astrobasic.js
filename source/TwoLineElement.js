@@ -23,14 +23,14 @@ class TwoLineElement {
     parse(name, line1, line2) {
         this.bstar_mantissa = Number(line1.substring(53, 59)) * 1e-5;
         this.bstar_exponent = Number("1e" + Number(line1.substring(59, 61)));
-        this.bstar = this.bstar_mantissa * this.bstar_exponent;
+        this.bstar          = this.bstar_mantissa * this.bstar_exponent;
 
-        this.lineNum1 = Number(line1.slice(0, 0));
-        this.designator1 = Number(line1.slice(2, 6));
+        this.lineNum1       = Number(line1.slice(0, 0));
+        this.designator1    = Number(line1.slice(2, 6));
         this.classification = Number(line1.slice(7, 7));
         this.identification = Number(line1.slice(9, 17));
-        this.day = Number(line1.substring(20, 32));
-        this.year = Number(line1.slice(18, 20));
+        this.day            = Number(line1.substring(20, 32));
+        this.year           = Number(line1.slice(18, 20));
 
         // first derivative of mean motion
         this.Δ1n = Number(line1.substring(33, 43));
@@ -40,9 +40,9 @@ class TwoLineElement {
 
         this.ephemeris_type = Number(line1.substring(62, 63));
         this.element_number = Number(line1.substring(64, 68));
-        this.checkSum1 = Number(line1.substring(69, 69));
-        this.lineNum2 = Number(line1.slice(0, 0));
-        this.designator2 = Number(line2.slice(2, 7));
+        this.checkSum1      = Number(line1.substring(69, 69));
+        this.lineNum2       = Number(line1.slice(0, 0));
+        this.designator2    = Number(line2.slice(2, 7));
 
         this.designator = Number(line2.slice(2, 7));
 
@@ -94,6 +94,18 @@ class TwoLineElement {
     }
 
     toString() {
+        let line1 = '1',
+            line2 = '2';
+
+        line1 += this.designator;
+        line1 += this.classification ? this.classification : 'U';
+        line1 += ' ';
+
+
+
+
+        line2 += this.designator;
+
         //ToDo: implement in reverse
     }
 
