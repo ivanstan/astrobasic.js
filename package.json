@@ -1,0 +1,29 @@
+{
+  "name": "astrobasic.js",
+  "version": "1.0.0",
+  "description": "Astrobasic",
+  "main": "",
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine-core": "*",
+    "mocha": "*",
+    "karma": "*",
+    "karma-chrome-launcher": "*",
+    "karma-jasmine": "*",
+    "karma-coverage": "*"
+  },
+  "scripts": {
+    "install": "gulp build",
+    "test": "node_modules/karma/bin/karma start tests/karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivanstan/astrobasic.js"
+  },
+  "author": "Ivan Stanojevic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivanstan/astrobasic.js/issues"
+  },
+  "homepage": "https://github.com/ivanstan/astrobasic.js"
+}
