@@ -1,10 +1,14 @@
 {
   "name": "astrobasic.js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Astrobasic",
   "main": "",
   "dependencies": {},
   "devDependencies": {
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-rename": "*",
     "jasmine-core": "*",
     "mocha": "*",
     "karma": "*",
