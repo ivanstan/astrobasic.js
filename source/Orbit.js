@@ -156,8 +156,10 @@ class Orbit extends TwoLineElement {
             fak       = Math.sqrt(1.0 - Math.pow(this.e, 2)),
             ν         = Math.atan2(fak * Math.sin(E), Math.cos(E) - this.e).toDegrees();
 
-        return Math.round(ν * Math.pow(10, precision)) / Math.pow(10, precision);
+        ν = Math.round(ν * Math.pow(10, precision)) / Math.pow(10, precision);
+        if(ν < 0) ν += 360;
 
+        return ν;
     }
 
     /**
