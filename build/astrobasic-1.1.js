@@ -1,7 +1,7 @@
 class Astro {
 
     static get G() {
-        return 6.674E-11;
+        return 6.67408E-11;
     }
 
     static rightAscension2hourAngle(α, time) {

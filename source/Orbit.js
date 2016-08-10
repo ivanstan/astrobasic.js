@@ -11,8 +11,8 @@ class Orbit extends TwoLineElement {
         super(name, line1, line2);
     }
 
-    static mu() {
-        return 3.986004418E14;
+    static get mu() {
+        return 398600;
     }
 
     /**
@@ -21,9 +21,8 @@ class Orbit extends TwoLineElement {
      * @constructor
      */
     get a() {
-        let mu = 398600,
-            n  = (this.n * 2 * Math.PI / (24 * 3600)),
-            a3 = mu / Math.pow(n, 2),
+        let n  = (this.n * 2 * Math.PI / (24 * 3600)),
+            a3 = Orbit.mu / Math.pow(n, 2),
             a  = Math.cbrt(a3);
 
         return a;
@@ -101,9 +100,8 @@ class Orbit extends TwoLineElement {
      * @returns {number}
      */
     v(r) {
-        let mu = Earth.M.toNumeric('kg') * Astro.G,
-            a  = this.a,
-            v  = Math.sqrt(((2 * mu) / r) - (mu / a));
+        let a = this.a,
+            v = Math.sqrt(((2 * Orbit.mu) / r) - (Orbit.mu / a));
 
         return v;
     }
@@ -116,7 +114,7 @@ class Orbit extends TwoLineElement {
     γ() {
         let e = this.e,
             ν = this.ν,
-            γ = Math.atan((e * Math.sin(ν)) / (1 + (e * Math.cos(ν))));
+            γ = Math.atan((e * Math.sin(ν.toRadians())) / (1 + (e * Math.cos(ν.toRadians()))));
 
         return γ;
     }
@@ -157,7 +155,7 @@ class Orbit extends TwoLineElement {
             ν         = Math.atan2(fak * Math.sin(E), Math.cos(E) - this.e).toDegrees();
 
         ν = Math.round(ν * Math.pow(10, precision)) / Math.pow(10, precision);
-        if(ν < 0) ν += 360;
+        if (ν < 0) ν += 360;
 
         return ν;
     }
@@ -181,19 +179,13 @@ class Orbit extends TwoLineElement {
         return M;
     }
 
-    // ToDo: time of periapsis passage
+    get t() {
+        let E = this.E,
+            e = this.e,
+            n = this.n,
+            t = (E - (e * Math.sin(E))) / n;
 
-    /**
-     * Area A1 = ab / 2 (E - e sin(E))
-     *
-     */
-    funct() {
-        let E  = this.E,
-            a  = this.a,
-            b  = this.b,
-            e  = this.e,
-            A1 = a * b / 2 * (E - e * Math.sin(E));
-
+        return t;
     }
 
 }
