@@ -73,15 +73,36 @@ class Moon extends Orbit {
 
     position(time) {
 
-        //ToDo: calculate Moon's position.
+        //ToDo: check if correct
 
-        let D = (Date.J2010 - 5.0) - time.toJD();
+        let D        = time.toJD(true) - (Date.J2010 - 5.0),
+            sun      = new Sun(),
+            ecliptic = sun.position(time),
+            sunM     = sun.M.toRadians(),
+            sunλ     = ecliptic.λ.toRadians(),
+            l        = (13.1763966 * D + Moon.l0) % 360,
+            Mm       = (l - 0.1114041 * D - Moon.P0) % 360,
+            N        = (Moon.N0 - 0.0529539 * D) % 360,
+            C        = l - sunλ,
+            Ev       = 1.2739 * Math.sin(Number(2 * C - Mm).toRadians()),
+            Ae       = 0.1858 * Math.sin(sunM),
+            A3       = 0.37 * Math.sin(sunM);
 
-        let l = (13.1763966 * D + Moon.l0) % 360,
-            Mm = (l - 0.1114041 * D - Moon.P0) % 360,
-            N = (Moon.N0 - 0.0529539 * D) % 360;
+        Mm = Mm + Ev - Ae - A3;
 
+        let Ec = 6.2886 * Math.sin(Mm.toRadians()),
+            A4 = 0.214 * Math.sin(2 * Mm.toRadians()),
+            l1 = l + Ev + Ec - Ae + A4,
+            V  = 0.6583 * Math.sin(2 * Number(l1 - sunλ).toRadians()),
+            l2 = l1 + V,
+            N1 = N - 0.16 * Math.sin(sunM),
+            y  = Math.sin(Number(l2 - N1).toRadians()) * Math.cos(Moon.i.toNumber('rad')),
+            x  = Math.cos(Number(l2 - N1).toRadians()),
+            λ  = Math.atan2((Math.sin(l2 - N1) * Math.cos(Moon.i.toNumber('rad'))), (Math.cos(l2 - N1))) + N1,
+            β  = Math.cos(Math.sin(l2 - N1) * Math.sin(Moon.i.toNumber('rad'))),
+            Δ  = 385001 - 20905 * Math.cos(Mm.toRadians());
 
+        return new Ecliptic(λ, β, Δ);
     }
 
 }
