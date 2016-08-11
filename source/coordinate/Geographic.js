@@ -72,6 +72,7 @@ class Geographic {
 
     /**
      * Returns distance expressed in meters between two geographic points (Haverstine).
+     * @see http://www.movable-type.co.uk/scripts/latlong.html
      *
      * @param {Geographic} geographic
      * @returns {number}

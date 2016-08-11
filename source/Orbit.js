@@ -18,7 +18,7 @@ class Orbit extends TwoLineElement {
     /**
      * Length of Semi major axis in kilometers.
      *
-     * @constructor
+     * @returns {number}
      */
     get a() {
         let n  = (this.n * 2 * Math.PI / (24 * 3600)),
