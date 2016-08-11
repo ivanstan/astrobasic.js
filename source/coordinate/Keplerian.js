@@ -25,17 +25,24 @@ class Keplerian {
      * @returns {Perifocal}
      */
     toPerifocal() {
-        let pi = Math.cos(this.Ω) * Math.cos(this.ω) - Math.sin(this.Ω) * Math.cos(this.i) * Math.sin(this.ω),
-            pj = Math.sin(this.Ω) * Math.cos(this.ω) + Math.cos(this.Ω) * Math.cos(this.i) * Math.sin(this.ω),
-            pk = Math.sin(this.i) * Math.sin(this.ω);
+        let e = this.e.toRadians(),
+            a = this.a.toRadians(),
+            i = this.i.toRadians(),
+            Ω = this.Ω.toRadians(),
+            ω = this.ω.toRadians(),
+            ν = this.ν.toRadians();
 
-        let qi = -Math.cos(this.Ω) * Math.sin(this.ω) - Math.sin(this.Ω) * Math.cos(this.i) * Math.cos(this.ω),
-            qj = -Math.sin(this.Ω) * Math.sin(this.ω) + Math.cos(this.Ω) * Math.cos(this.i) * Math.cos(this.ω),
-            qk = Math.sin(this.i) * Math.cos(this.ω);
+        let pi = Math.cos(Ω) * Math.cos(ω) - Math.sin(Ω) * Math.cos(i) * Math.sin(ω),
+            pj = Math.sin(Ω) * Math.cos(ω) + Math.cos(Ω) * Math.cos(i) * Math.sin(ω),
+            pk = Math.sin(i) * Math.sin(ω);
 
-        let wi = Math.sin(this.i) * Math.sin(this.Ω),
-            wj = -Math.sin(this.i) * Math.cos(this.Ω),
-            wk = Math.cos(this.i);
+        let qi = -Math.cos(Ω) * Math.sin(ω) - Math.sin(Ω) * Math.cos(i) * Math.cos(ω),
+            qj = -Math.sin(Ω) * Math.sin(ω) + Math.cos(Ω) * Math.cos(i) * Math.cos(ω),
+            qk = Math.sin(i) * Math.cos(ω);
+
+        let wi = Math.sin(i) * Math.sin(Ω),
+            wj = -Math.sin(i) * Math.cos(Ω),
+            wk = Math.cos(i);
 
         let p = pi + pj + pk,
             q = qi + qj + qk,
