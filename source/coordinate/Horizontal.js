@@ -5,10 +5,12 @@ class Horizontal {
      *
      * @param A Azimuth [degrees]
      * @param a Altitude [degrees]
+     * @param Δ Distance [Unit]
      */
-    constructor(A, a) {
+    constructor(A, a, Δ = 0) {
         this.A = A;
         this.a = a;
+        this.Δ = Δ;
     }
 
     /**
@@ -27,6 +29,15 @@ class Horizontal {
      */
     get altitude() {
         return this.a;
+    }
+
+    /**
+     * Returns distance.
+     *
+     * @returns {Number}
+     */
+    get distance() {
+        return this.Δ;
     }
 
 }
