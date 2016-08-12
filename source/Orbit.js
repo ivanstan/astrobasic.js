@@ -111,7 +111,7 @@ class Orbit extends TwoLineElement {
      *
      * @returns {number}
      */
-    γ() {
+    get γ() {
         let e = this.e,
             ν = this.ν,
             γ = Math.atan((e * Math.sin(ν.toRadians())) / (1 + (e * Math.cos(ν.toRadians()))));
