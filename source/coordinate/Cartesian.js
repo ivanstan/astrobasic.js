@@ -14,6 +14,17 @@ class Cartesian {
     }
 
     /**
+     * Returns length of radius vector.
+     *
+     * @returns {number}
+     */
+    getRadius() {
+        let R = Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2));
+
+        return R;
+    }
+
+    /**
      * Transforms equatorial geocentric cartesian coordinates to geographic coordinates.
      *
      * @param time
