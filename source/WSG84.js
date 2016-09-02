@@ -15,6 +15,15 @@ class WGS84 {
     }
 
     /**
+     * Semi-minor Axis expressed in meters [m]
+     *
+     * @returns {number}
+     */
+    static get b() {
+        return math.unit(WGS84.a * (1 - WGS84.f), 'm');
+    }
+
+    /**
      * Flattening Factor of the Earth
      *
      * @returns {number}
